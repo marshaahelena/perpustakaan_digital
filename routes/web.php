@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\registrasicontroller;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ Route::get('/daftar', function () {
     return view('register');
 })->name('registrasi');
 
-Route::post('/register', [registrasicontroller::class, 'registrasi'])->name('register');
-
-
+Route::get('/logout', [AuthController::class, 'logout'])->name("auth.logout");
+Route::get('/register', [AuthController::class, 'register'])->name("auth.register");
+Route::post('/register', [AuthController::class, 'store'])->name("auth.store");
 

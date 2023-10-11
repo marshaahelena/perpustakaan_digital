@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{url('asset/materialize/css/materialize.min.css')}}">
         <!--Import Google Icon Font-->
         <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons" 
             rel="stylesheet"/>
 
 </head>
@@ -16,7 +16,7 @@
   <li><a href="/coba">Aku</a></li>
   <li><a href="#!">Bukuku</a></li>
   <li class="divider"></li>
-  <li><a href="#!">logout</a></li>
+  <li><a href="{{route("auth.logout") }}">logout</a></li>
 </ul>
 <nav>
   <div class="nav-wrapper">

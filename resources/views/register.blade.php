@@ -26,11 +26,11 @@
 
             <h3>Form Registrasi </h3>
         </div>
-        <form action="register" method="post">
+        <form action="{{route("auth.store")}}" method="post">
         @csrf
             <div class="input-field">
-                <input type="text" id="nama" name="nama" required>
-                <label for="nama">Nama</label>
+                <input type="text" id="name" name="name" required>
+                <label for="name">Nama</label>
             </div>
    <div class="input-field">
                 <input type="email" id="email" name="email" required>
@@ -45,25 +45,25 @@
             <p>Jenis Kelamin:</p>
             <p>
                 <label>
-                    <input type="radio" id="laki_laki" name="jenis_kelamin" value="Laki-laki" required>
+                    <input type="radio" id="laki_laki" name="gender" value="laki_laki" required>
                     <span>Laki-laki</span>
                 </label>
             </p>
             <p>
                 <label>
-                    <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan" required>
+                    <input type="radio" id="perempuan" name="gender" value="Perempuan" required>
                     <span>Perempuan</span>
                 </label>
             </p>
 
             <div class="input-field">
-                <input type="text" id="no_hp" name="no_hp" required>
-                <label for="no_hp">No. HP</label>
+                <input type="text" id="phone_number" name="phone_number" required>
+                <label for="phone_number">No. HP</label>
             </div>
 
             <div class="input-field">
-                <textarea id="alamat" name="alamat" class="materialize-textarea" required></textarea>
-                <label for="alamat">Alamat</label>
+                <textarea id="address" name="address" class="materialize-textarea" required></textarea>
+                <label for="address">Alamat</label>
             </div>
 
             <button class="btn waves-effect waves-light" type="submit">Daftar</button>

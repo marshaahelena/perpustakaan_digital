@@ -18,6 +18,7 @@
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>LOGIN</title>
+        @csrf
         <style>
             .form-container {
                 margin-top: 80px;
@@ -65,7 +66,22 @@
     <body>
        <div class="row form-container">
             <div class="col s12 m6 offset-m3">
-                <form class="col s12">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $item)
+
+                            <li>
+                                (( $item))
+                            </li>
+
+                            @endforeach
+                        </ul>
+                    </div>
+
+                @endif
+                <form class="col s12" method="POST" action="{{route("auth.logout")}}">
+                    @csrf
                     <div class="row">
                     <div class="col s12 m20">
     <div class="card horizontal">
@@ -74,14 +90,14 @@
         <div class="row">
     <div class="input-field col s12 ">
         <i class="material-icons prefix">account_circle</i>
-        <input id="icon_email" type="text" class="validate">
+        <input id="icon_email" type="text" class="validate" name="email" required>
         <label for="icon_email">Email</label>
     </div>
 </div>
 <div class="row">
     <div class="input-field col s12">
         <i class="material-icons prefix">vpn_key</i>
-        <input id="icon_password" type="password" class="validate">
+        <input id="icon_password" type="password" class="validate" name="password" required>
         <label for="icon_password">Password</label>
     </div>
 </div>
