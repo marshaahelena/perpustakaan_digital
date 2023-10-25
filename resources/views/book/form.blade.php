@@ -20,6 +20,17 @@
 <body>
     <div class="container">
         <div class="row">
+
+          @if ($errors->any())
+            <div class="card-panel red lighten-2">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+            </div> 
+          @endif
+
             <form action="{{ route('book.store') }}" method="POST" class="col s12">
                 @csrf
                 <div class="card center-align">
