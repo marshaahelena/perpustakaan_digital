@@ -48,22 +48,17 @@
     <div class="container">
         <div class="profile-container">
             <div class="profile-picture">
-                <!-- Tambahkan sumber gambar profil di bawah -->
                 <img src="/aku.jpg" alt="Profil Anda">
             </div>
             <div class="user-name">
-                <!-- Gantikan teks di bawah dengan nama pengguna -->
                 Marsha Helena Ismanda
             </div>
             <div class="user-email">
-                <!-- Gantikan teks di bawah dengan alamat email -->
                 marshahelena12@gmail.com
             </div>
-            <button class="btn btn-logout waves-effect waves-light" onclick="logout()">Logout</button>
         </div>
     </div>
 
-    <!-- Tambahkan tautan ke Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         // Aktifkan fitur Materialize

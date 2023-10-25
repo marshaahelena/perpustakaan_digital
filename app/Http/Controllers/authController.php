@@ -23,6 +23,7 @@ class AuthController extends Controller
             'phone_number' => 'required',
             'address' => 'required'
 
+
         ]);
 
         $validasi['password'] = password_hash($validasi['password'], PASSWORD_BCRYPT);
@@ -39,11 +40,13 @@ class AuthController extends Controller
     }
 
     function authentication(Request $request){
+        // dd($request);
         $validasi = $request->validate([
             'email' => 'required',
             'password' => 'required'
-        ]);
 
+        ]);
+        // dd($validasi);
         if (Auth::attempt($validasi)){
             $request->session()->regenerate();
 

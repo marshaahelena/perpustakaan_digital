@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\registrasicontroller;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +30,20 @@ Route::get('/daftar', function () {
     return view('register');
 })->name('registrasi');
 
+Route::get('/buku', function () {
+    return view('book/form');
+});
+
+
+Route::get('/login', [AuthController::class, 'login'])->name("login");
+Route::post('/login', [AuthController::class, 'authentication'])->name("auth.authentication");
 Route::get('/logout', [AuthController::class, 'logout'])->name("auth.logout");
 Route::get('/register', [AuthController::class, 'register'])->name("auth.register");
 Route::post('/register', [AuthController::class, 'store'])->name("auth.store");
+
+
+Route::resource('book', BookController::class);
+
+
+
 
