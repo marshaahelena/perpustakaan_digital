@@ -54,7 +54,7 @@ class BookController extends Controller
         book::create($validatedData);
 
         // Redirect atau lakukan tindakan lain setelah penyimpanan
-        return redirect()->route('buku.index');
+        return redirect()->route('book.index');
     }
 
 

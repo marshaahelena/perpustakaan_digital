@@ -17,22 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/form', function () {
-    return view('login');
-})->name('login');
-Route::get('/header', function () {
-    return view('dashboard/header');
-});
-Route::get('/coba', function () {
-    return view('login2');
-});
-Route::get('/daftar', function () {
-    return view('register');
-})->name('registrasi');
+// Route::get('/form', function () {
+//     return view('login');
+// })->name('login');
+// Route::get('/header', function () {
+//     return view('dashboard/header');
+// });
+// Route::get('/coba', function () {
+//     return view('login2');
+// });
+// Route::get('/daftar', function () {
+//     return view('register');
+// })->name('registrasi');
 
-Route::get('/buku', function () {
-    return view('book/form');
-});
+// Route::get('/buku', function () {
+//     return view('book/form');
+// });
 
 
 Route::get('/login', [AuthController::class, 'login'])->name("login");
