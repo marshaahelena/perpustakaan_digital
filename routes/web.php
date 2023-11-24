@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowingBookController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\registrasicontroller;
 
 use Illuminate\Support\Facades\Route;
@@ -17,22 +19,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/form', function () {
-//     return view('login');
-// })->name('login');
-// Route::get('/header', function () {
-//     return view('dashboard/header');
-// });
-// Route::get('/coba', function () {
-//     return view('login2');
-// });
-// Route::get('/daftar', function () {
-//     return view('register');
-// })->name('registrasi');
+Route::get('/form', function () {
+    return view('login');
+})->name('login');
+Route::get('/header', function () {
+    return view('dashboard/header');
+});
+Route::get('/coba', function () {
+    return view('book_donation.data');
+});
 
-// Route::get('/buku', function () {
-//     return view('book/form');
-// });
+Route::get('/tes', function () {
+    return view('coba');
+});
+
+
+
+
 
 
 Route::get('/login', [AuthController::class, 'login'])->name("login");
@@ -40,9 +43,14 @@ Route::post('/login', [AuthController::class, 'authentication'])->name("auth.aut
 Route::get('/logout', [AuthController::class, 'logout'])->name("auth.logout");
 Route::get('/register', [AuthController::class, 'register'])->name("auth.register");
 Route::post('/register', [AuthController::class, 'store'])->name("auth.store");
+Route::get('/data', [AuthController::class, 'index'])->name("auth.index");
+Route::post('/data', [AuthController::class, 'index'])->name("auth.index");
 
 
-Route::resource('book', BookController::class);
+Route::resource('/book', BookController::class);
+Route::resource('/donation', DonationController::class);
+Route::resource('/borrowing', BorrowingBookController::class);
+Route::resource('/user', AuthController::class);
 
 
 

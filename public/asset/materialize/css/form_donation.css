@@ -1,0 +1,53 @@
+body {
+    background-image: url(https://i.pinimg.com/564x/a7/d9/fc/a7d9fc4f7c185c0e250e5fcedf692305.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 70px;
+    border-radius: 50px;
+}
+
+/* Gaya untuk tombol upload ebook */
+.file-field .btn {
+    background-color: #2196F3;
+    /* Warna latar belakang tombol */
+    border-radius: 20px;
+    /* Sudut melengkung pada tombol */
+    overflow: hidden;
+    /* Masking agar tombol sesuai dengan border-radius */
+
+    /* Stil teks di dalam tombol */
+    color: #fff;
+    /* Warna teks tombol */
+    font-weight: 500;
+    /* Ketebalan font */
+    text-transform: uppercase;
+    /* Mengubah teks menjadi huruf kapital */
+    padding: 0 20px;
+    /* Ruang padding horizontal */
+}
+
+/* Gaya hover tombol upload ebook */
+.file-field .btn:hover {
+    background-color: #1976D2;
+    /* Warna latar belakang saat dihover */
+}
+
+/* Gaya teks di dalam tombol */
+.file-field .btn span {
+    padding: 0 10px;
+    /* Ruang padding horizontal dalam tombol */
+}
+
+/* Gaya border radius pada file input */
+.file-field .file-path-wrapper {
+    border-radius: 20px;
+    /* Sudut melengkung pada file input */
+}
+.btn{
+    border-radius: 50px; overflow: hidden; width: 300px;
+}

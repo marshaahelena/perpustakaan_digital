@@ -15,6 +15,7 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("category_id");
             $table->string('title');
             $table->string('code');
             $table->string('author');
@@ -22,8 +23,6 @@ class CreateBooksTable extends Migration
             $table->integer('publication_year');
             $table->integer('stock')->default(0);
             $table->text('synopsis');
-            $table->string('category');
-            $table->string('newCategory');
             $table->string('pdf_file');
             $table->string('cover_image');
             $table->timestamps();

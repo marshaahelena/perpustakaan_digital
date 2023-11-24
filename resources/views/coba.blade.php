@@ -1,135 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="stylesheet" href="{{ url('asset/materialize/css/materialize.min.css') }}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tambah Buku</title>
-    <style>
-         body {
-            background-color: rgb(157, 153, 153);
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    </style>
-</head>
-
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{asset('asset/side_bar')}}/style.css" />
+    <title>Sidebar</title>
+  </head>
+  <body>
     <div class="container">
-        <div class="row">
-            <form class="col s12">
-                <div class="card center-align">
-                    <div class="card-content">
-                        <h3>Tambah Buku</h3>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">title</i>
-                                <input placeholder="Judul" id="title" type="text" class="validate" name="title">
-                                <label for="title">Judul</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">book</i>
-                                <input placeholder="Kode" id="code" type="text" class="validate" name="code">
-                                <label for="code">Kode</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">person</i>
-                                <input placeholder="Penulis" id="author" type="text" class="validate" name="author">
-                                <label for="author">Penulis</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">business</i>
-                                <input placeholder="Penerbit" id="publisher" type="text" class="validate" name="publisher">
-                                <label for="publisher">Penerbit</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">date_range</i>
-                                <input placeholder="Tahun Terbit" id="publication_year" type="text" class="validate" name="publication_year">
-                                <label for="publication_year">Tahun Terbit</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">attach_file</i>
-                                <input placeholder="Stok" id="stock" type="text" class="validate" name="stock">
-                                <label for="stock">Stok</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">library_books</i>
-                                <textarea id="synopsis" class="materialize-textarea" name="synopsis"></textarea>
-                                <label for="synopsis">Sinopsis</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">category</i>
-                                <select id="category" name="category">
-                                    <option value="" disabled selected>Pilih Kategori</option>
-                                    <option value="Fiksi">Fiksi</option>
-                                    <option value="Non-Fiksi">Non-Fiksi</option>
-                                    <option value="Sains">Sains</option>
-                                    <option value="NewCategory">Kategori Baru</option>
-                                </select>
-                                <label>Kategori</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">library_books</i>
-                                <input type="text" id="newCategory" name="newCategory">
-                                <label for="newCategory">Kategori Baru</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <form action="#" class="col s6">
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>File PDF</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
-                                    </div>
-                                </div>
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>Cover</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </form>
+      <aside class="sidebar">
+        <ul class="menu-list">
+          <li>
+            <div class="menu-container">
+              <button class="icon" id="menu">
+                <img src="{{asset('asset/side_bar')}}/assets/images/menu.svg" alt="menu" />
+              </button>
+            </div>
+          </li>
+          <li>
+            <a href="{{route('book.store')}}">
+                <button class="icon" id="search">
+                    <img src="{{ asset('asset/side_bar/assets/images/search.svg') }}" alt="search" />
+                </button>
+            </a>
+
+          </li>
+          <li>
+            <button class="icon" id="dashboard">
+              <img src="{{asset('asset/side_bar')}}/assets/images/grid.svg" alt="dashboard" />
+            </button>
+          </li>
+          <li>
+            <button class="icon" id="pets">
+              <img src="{{asset('asset/side_bar')}}/assets/images/pet.svg" alt="pets" />
+            </button>
+          </li>
+          <li>
+            <button class="icon" id="clients">
+              <img src="{{asset('asset/side_bar')}}/assets/images/user.svg" alt="clients" />
+            </button>
+          </li>
+          <li>
+            <button class="icon" id="vets">
+              <img src="{{asset('asset/side_bar')}}/assets/images/vet.svg" alt="vets" />
+            </button>
+          </li>
+          <li>
+            <button class="icon" id="settings">
+              <img src="{{asset('asset/side_bar')}}/assets/images/settings.svg" alt="settings" />
+            </button>
+          </li>
+        </ul>
+        <div class="logout-container">
+          <button class="icon-logout">
+            <img src="{{asset('asset/side_bar')}}/assets/images/log-out.svg" alt="logout" />
+          </button>
         </div>
+      </aside>
+
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url('asset/materialize/js/materialize.min.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Materialize components
-            M.AutoInit();
-
-            var categorySelect = document.getElementById('category');
-            var newCategoryInput = document.getElementById('newCategory');
-
-            categorySelect.addEventListener('change', function() {
-                if (categorySelect.value === 'NewCategory') {
-                    newCategoryInput.style.display = 'block';
-                } else {
-                    newCategoryInput.style.display = 'none';
-                }
-            });
-        });
-    </script>
-</body
+  </body>
+  <script src="{{asset('asset/side_bar')}}/script.js"></script>
+</html>

@@ -13,14 +13,14 @@
             border-radius: 0 0 20px 20px;
         }
 
-        .kata {
+        /* .kata {
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 5vh;
             color: rgb(108, 108, 147);
-        }
+        } */
 
         .button {
             display: flex;
@@ -37,13 +37,14 @@
         }
 
         body {
-            background-color: rgb(157, 153, 153);
+            background-image: url(https://i.pinimg.com/564x/a7/d9/fc/a7d9fc4f7c185c0e250e5fcedf692305.jpg);
             background-size: cover;
             background-repeat: no-repeat;
         }
 
-        .card-content {
-            border-radius: 10px;
+        .card.horizontal {
+            border-radius: 50px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -51,22 +52,14 @@
 <body>
     <div class="row form-container">
         <div class="col s12 m6 offset-m3">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $item)
-                            <li>
-                                {{ $item }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <div id="error-message" class="red-text" style="display: none;">
+                Email atau password salah. Silakan coba lagi.
+            </div>
             <form class="col s12" method="POST" action="{{ route('auth.authentication') }}">
                 @csrf
                 <div class="row center-align valign-wrapper">
                     <div class="col s12 m20">
-                        <div class="card horizontal ">
+                        <div class="card horizontal">
                             <div class="card-image">
                                 <img src="g1.jpg" alt="Deskripsi Gambar">
                             </div>
@@ -74,7 +67,7 @@
                                 <div class="card-content white">
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <i class="material-icons prefix">account_circle</i>
+                                            <i class="material-icons prefix" style="font-size: 28px;">account_circle</i>
                                             <input placeholder="Email" id="icon_email" type="text" class="validate"
                                                 name="email" required>
                                             <label for="icon_email"></label>
@@ -82,8 +75,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <i class="material-icons prefix"
-                                                id="togglePasswordVisibility">visibility</i>
+                                            <i class="material-icons prefix" id="togglePasswordVisibility"
+                                                style="font-size: 28px;">visibility</i>
                                             <input placeholder="Password" id="icon_password" type="password"
                                                 class="validate" name="password" required>
                                             <label for="icon_password"></label>
@@ -92,9 +85,12 @@
 
                                     <div class="kata">Nikmati berbagai layanan perpustakaan setelah login</div>
                                     <div class="button">
-                                        <button class="btn waves-effect waves-light" type="submit"
-                                            class="button1">Login Sekarang</button>
-                                        <p>Balum punya akun?<a href="/daftar">Daftar</a></p>
+                                        <button class="btn waves-effect waves-light" type="submit" class="button"
+                                            style="border-radius: 50px;
+                                            overflow: hidden;">Login
+                                            Sekarang</button>
+                                        <p style="margin-top: 10px;">Balum punya akun?<a
+                                                href="{{ route('auth.register') }}">Daftar</a></p>
                                     </div>
                                 </div>
                             </div>
