@@ -74,11 +74,11 @@ class BorrowingBookController extends Controller
 
         // Menggunakan Carbon untuk mengelola tanggal
         $loanDate = $request->input('loan_date', Carbon::now()->toDateString());
-        $returnDate = $request->input('return_date', Carbon::now()->toDateString());
-        $dueDate = Carbon::parse($returnDate)->addDays(5)->toDateString();
+        // $returnDate = $request->input('return_date', Carbon::now()->toDateString());
+        $dueDate = now()->addDays(5)->toDateString();
 
         $validatedData['loan_date'] = $loanDate;
-        $validatedData['return_date'] = $returnDate;
+        // $validatedData['return_date'] = $returnDate;
         $validatedData['due_date'] = $dueDate;
 
         $books = book::where('title', $request->title)->firstOrFail();
@@ -177,7 +177,6 @@ class BorrowingBookController extends Controller
 
     public function returnbook()
     {
-
         $users = User::where('role', '!=', 'admin')->get();
         $books = book::all();
         return view("return.form", [
@@ -185,7 +184,6 @@ class BorrowingBookController extends Controller
             'books' => $books,
 
         ]);
-
     }
 
     public function savereturnbook(Request $request)
@@ -193,19 +191,24 @@ class BorrowingBookController extends Controller
 
         $rent = borrowing::where('name', $request->name)
                         ->where('title', $request->title)
-                        ->whereNotNull('return_date')
+                        ->whereNull('return_date')
                         ->first();
 
         if ($rent) {
             if ($rent->return_date) {
                 return redirect()->back()->with('error', 'Buku sudah dikembalikan sebelumnya.');
             }
-            $rent->return_date = Carbon::now()->toDateString();
-            $rent->save();
+
+            $rent->update([
+                'return_date' => now()->toDateString()
+            ]);
 
             $book = book::where('title', $rent->title)->firstOrFail();
-            $book->increment('stock', $rent->quantity);
-            $book->save();
+
+            $book->update([
+                'stock' => ($book->stock += $rent->quantity)
+            ]);
+
             return redirect()->route('borrowing.create')->with('success', 'Buku berhasil dikembalikan.');
         } else {
             // Tidak ada peminjaman yang sesuai

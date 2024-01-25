@@ -16,6 +16,7 @@
         <p>Kode Peminjaman Anda: {{ $generatedCode }}</p>
         <p>Terima kasih sudah melakukan peminjaman. Silakan simpan kode peminjaman ini untuk referensi Anda.</p>
         {{-- <a href="{{ route('borrowing.index') }}" class="waves-effect waves-light btn">Lihat Daftar Peminjaman</a> --}}
+        <a href="{{ route('index') }}" class="waves-effect waves-light btn">Kembali</a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

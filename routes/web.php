@@ -45,10 +45,9 @@ Route::get('/coba', function () {
     return view('coba');
 });
 
-
-
-
-
+Route::get('/', function() {
+    return redirect()->route('index');
+});
 
 Route::get('/login', [AuthController::class, 'login'])->name("login");
 Route::post('/login', [AuthController::class, 'authentication'])->name("auth.authentication");
@@ -69,8 +68,6 @@ Route::post('/data', [AuthController::class, 'index'])->name("auth.index");
 
 // Route::get('/count-users', [AuthController::class, 'showCountUsers'])->name('count-users');
 // Route::get('header', [DashboardController::class, 'index'])->middleware('OnlyAdmin');
-
-
 
 
 Route::resource('/book', BookController::class);

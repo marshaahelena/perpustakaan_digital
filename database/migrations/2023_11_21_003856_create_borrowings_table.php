@@ -18,7 +18,7 @@ class CreateBorrowingsTable extends Migration
             $table->string('name');
             $table->string('title');
             $table->string('loan_date');
-            $table->string('return_date');
+            $table->string('return_date')->nullable();
             $table->string('due_date');
             $table->string('code');
             $table->integer('quantity');
