@@ -29,20 +29,20 @@ class DummyBookSeeder extends Seeder
                 'name' => $category,
             ]);
 
-            for ($i=0; $i < 10; $i++) { 
-                $title = $faker->unique()->colorName();
-                $row->book()->create([
-                    'title' => $title,
-                    'code' => Str::snake($title),
-                    'author' => $faker->unique()->firstName(),
-                    'publisher' => $faker->unique()->firstName(),
-                    'publication_year' => mt_rand(1990, 2020),
-                    'stock' => mt_rand(0, 150),
-                    'synopsis' => $faker->text(),
-                    'pdf_file' => '',
-                    'cover_image' => '',
-                ]);
-            }
+            // for ($i=0; $i < 10; $i++) { 
+            //     $title = $faker->unique()->colorName();
+            //     $row->book()->create([
+            //         'title' => $title,
+            //         'code' => Str::snake($title),
+            //         'author' => $faker->unique()->firstName(),
+            //         'publisher' => $faker->unique()->firstName(),
+            //         'publication_year' => mt_rand(1990, 2020),
+            //         'stock' => mt_rand(0, 150),
+            //         'synopsis' => $faker->text(),
+            //         'pdf_file' => '',
+            //         'cover_image' => '',
+            //     ]);
+            // }
         }
     }
 }

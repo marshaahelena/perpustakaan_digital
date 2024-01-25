@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\book;
 use App\Models\Category;
 use Illuminate\Database\Console\Migrations\StatusCommand;
@@ -17,11 +18,8 @@ class BookController extends Controller
      */
     public function index()
     {
-
-        return view("book.data",[
+        return view("book.data", [
             "data" => book::get()
-
-
         ]);
     }
 
@@ -31,19 +29,19 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-{
-    // Generate a UUID
-    $uuid = (string) Str::uuid();
-    // Ambil lima karakter pertama dari UUID
-    $shortUuid = substr($uuid, 0, 8);
-    // Konversi ke huruf besar dan pastikan hanya angka dan huruf yang ada
-    $generatedCode = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $shortUuid));
+    {
+        // Generate a UUID
+        $uuid = (string) Str::uuid();
+        // Ambil lima karakter pertama dari UUID
+        $shortUuid = substr($uuid, 0, 8);
+        // Konversi ke huruf besar dan pastikan hanya angka dan huruf yang ada
+        $generatedCode = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $shortUuid));
 
-    return view("book.form", [
-        "category" => Category::get(),
-        "generatedCode" => $generatedCode,
-    ]);
-}
+        return view("book.form", [
+            "category" => Category::get(),
+            "generatedCode" => $generatedCode,
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -78,15 +76,15 @@ class BookController extends Controller
         // $file->move(public_path("uploads/book/"), $file_name);
         // $validatedData["cover_image"] = $file_name;
         // Penanganan gambar sampul
-    if ($request->hasFile('cover_image')) {
-        $file = $request->file('cover_image');
-        $file_name = $file->getClientOriginalName();
-        $file->move(public_path("uploads/book/"), $file_name);
-        $validatedData["cover_image"] = $file_name;
-    } else {
-        $defaultImage = 'no-image-png.jpg';
-        $validatedData["cover_image"] = $defaultImage;
-    }
+        if ($request->hasFile('cover_image')) {
+            $file = $request->file('cover_image');
+            $file_name = $file->getClientOriginalName();
+            $file->move(public_path("uploads/book/"), $file_name);
+            $validatedData["cover_image"] = $file_name;
+        } else {
+            $defaultImage = 'no-image-png.jpg';
+            $validatedData["cover_image"] = $defaultImage;
+        }
 
 
         if ($request->hasFile('pdf_file')) {
@@ -116,7 +114,7 @@ class BookController extends Controller
     {
         $book = book::find($id);
 
-        return view('book-list',['show'=> $book]);
+        return view('book-list', ['show' => $book]);
     }
 
     /**
@@ -202,7 +200,4 @@ class BookController extends Controller
             "categories" => $categories,
         ]);
     }
-
-   
-
 }

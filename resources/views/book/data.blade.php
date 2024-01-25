@@ -42,8 +42,8 @@
                         <td>{{ $see->stock }}</td>
                         <td>{{ $see->synopsis }}</td>
                         <td>{{ $see->category->name }}</td>
-                        <td>{{ $see->pdf_file }}</td>
-                        <td><img src="{{asset("uploads/book/".$see->cover_image) }}" alt="" width="50"></td>
+                        <td><a target="_blank" href="{{ $see->getPdf() }}">{{ $see->pdf_file }}</a></td>
+                        <td><img src="{{ $see->getCover() }}" alt="" width="50"></td>
                         <td class="right-align">
                             <a class="waves-effect waves-light btn-small blue" href="{{ route('book.edit', $see->id) }}">Edit</a>
                             <form method="POST" action="{{ route('book.destroy', $see->id) }}" style="display: inline;">

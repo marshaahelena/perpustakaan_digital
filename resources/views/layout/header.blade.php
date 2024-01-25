@@ -36,7 +36,7 @@
                 @if (Auth::User())
                     @if (Auth::User()->role == 'admin')
                         <div class="list-group list-group-flush mt-3">
-                            <a href="dashboardAdmin" class="list-group-item py-2 fs-5 ">
+                            <a href="{{ route('index') }}" class="list-group-item py-2 fs-5 ">
                                 <i class="bi bi-speedometer me-2"></i>
                                 <span>Dashboard</span>
                             </a>
