@@ -1,6 +1,8 @@
+
+@extends('layout.header')
+@section('navbar')
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -49,13 +51,11 @@
                             <a class="waves-effect waves-light btn-small blue"
                                 href="{{ route('user.edit', $see->id) }}">Edit</a>
 
-                            <form method="POST" action="" style="display: inline;">
+                            <form method="POST" action="{{ route('user.destroy', $see->id) }}" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="waves-effect waves-light btn-small red"
-                                    onclick="return confirm('Apa kamu yakin mengahapus data ini?')"
-                                    href="{{ route('user.destroy', $see->id) }}
-                                ">Hapus</button>
+                                    onclick="return confirm('Apa kamu yakin mengahapus data ini?')">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -69,3 +69,4 @@
 </body>
 
 </html>
+@endsection

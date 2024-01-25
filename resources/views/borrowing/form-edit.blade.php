@@ -72,7 +72,7 @@
                                 </div>
 
                                 <button class="btn waves-effect waves-light indigo" type="submit" name="action">Submit
-                                    <i class="material-icons right">send</i>
+                                    <i class="material-icons right">Edit</i>
                                 </button>
                             </div>
                         </div>

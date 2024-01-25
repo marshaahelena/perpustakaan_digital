@@ -21,8 +21,7 @@ class CreateBorrowingsTable extends Migration
             $table->string('return_date');
             $table->string('due_date');
             $table->string('code');
-            $table->string('status');
-            $table->string('fine');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

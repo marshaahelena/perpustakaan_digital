@@ -17,12 +17,17 @@ class borrowing extends Model
        'return_date',
        'due_date',
        'code',
-       'status',
-       'fine'
+       'quantity'
+ ];
 
+ public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-
-    ];
-
+    public function book()
+    {
+        return $this->belongsTo(book::class);
+    }
 
 }

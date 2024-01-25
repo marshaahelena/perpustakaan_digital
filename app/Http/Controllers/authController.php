@@ -38,7 +38,7 @@ class AuthController extends Controller
 
                user::create($validasi);
 
-               return redirect()->route('login')->with('message-info', 'Pendaftaran berhasil, silakan masuk.');
+               return redirect()->route('login')->with('status', 'Pendaftaran berhasil, silakan masuk.');
        }
 
        function countUsers() {
@@ -53,20 +53,53 @@ class AuthController extends Controller
     }
 
     function authentication(Request $request){
-        // dd($request);
         $validasi = $request->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required'
-
         ]);
-        // dd($validasi);
-        if (Auth::attempt($validasi)){
-            $request->session()->regenerate();
 
-            return redirect()->intended('header');
+        if (Auth::attempt($validasi)) {
+            $request->session()->regenerate();
+            if(auth()->user()->role === 'admin'){
+                return redirect()->intended('dashboardAdmin')->with('status', 'Login successful. Welcome!');
+            }else if(auth()->user()->role === 'anggota'){
+                return redirect()->intended('/dashboardAnggota')->with('status', 'Login successful. Welcome!');
+            }else if(auth()->user()->role === 'pustakawan'){
+                return redirect()->intended('/dashboardPustakawan')->with('status', 'Login successful. Welcome!');
+            }
         }
 
-        return redirect()->route('login')->with('message-info', "cek lagi ada yang salah");
+        return redirect()->route('login')->with('status', 'Email or password is incorrect. Please try again.');
+        if(Auth::user()->role_id == 1){
+            return redirect('dashboard');
+        }
+        if(Auth::user()->role_id == 2){
+            return redirect('Home');
+        }
+
+    // function authentication(Request $request){
+    //     $validasi = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required'
+    //     ]);
+
+    //     if (Auth::attempt($validasi)) {
+    //         $request->session()->regenerate();
+
+    //         // Redirect based on user role
+    //         if(Auth::user()->role_id == 1){
+    //             return redirect('header');
+    //         }
+    //         if(Auth::user()->role_id == 2){
+    //             return redirect('home');
+    //         }
+    //     }
+
+    //     return redirect()->route('login')->with('status', 'Email or password is incorrect. Please try again.');
+
+
+
+
 
     }
         public function logout()
@@ -117,8 +150,15 @@ class AuthController extends Controller
         public function destroy(string $id)
         {
             User::find($id)->delete();
-            return redirect()->route("User.index");
+            return redirect()->route("user.index");
         }
+        public function showCountUsers()
+{
+    $count = $this->countUsers(); // atau cara lain untuk mendapatkan jumlah anggota
+
+    return view('layout.dashboard', compact('count'));
+}
+
 
             }
 

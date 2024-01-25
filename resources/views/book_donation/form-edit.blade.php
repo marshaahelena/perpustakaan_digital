@@ -55,7 +55,7 @@
                         <div class="row center-align">
                             <div class="col s6 offset-s3">
                                 <button class="btn waves-effect waves-light indigo lighten-2"
-                                    type="submit">Kirim</button>
+                                    type="submit">Edit</button>
                             </div>
                         </div>
                     </div>

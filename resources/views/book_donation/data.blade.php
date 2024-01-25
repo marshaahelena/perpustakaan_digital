@@ -1,3 +1,6 @@
+@extends('layout.header')
+@section('navbar')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,10 +15,12 @@
 
 <body>
     <div class="container">
-        <h4>Data Donasi Buku</h4>
-        <a class="waves-effect waves-light btn" href='{{ route('donation.create') }}'>Tambah Data</a>
+        <h4>
+            Data Donasi Buku</h4>
+        {{-- <a class="waves-effect waves-light btn" href='{{ route('donation.create') }}'>Tambah Data</a> --}}
 
-        <table class="highlight centered responsive-table">
+        <table
+        class="highlight centered responsive-table">
             <thead>
                 <tr>
                     <th>No</th>
@@ -23,6 +28,7 @@
                     <th>Penulis</th>
                     <th>E-Book</th>
                     <th>Pesan</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,3 +61,4 @@
 </body>
 
 </html>
+@endsection

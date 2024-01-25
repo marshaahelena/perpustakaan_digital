@@ -1,0 +1,109 @@
+.sidebar {
+    height: 100vh;
+    border-right: 1px solid #c7c8c9;
+    background-color: var(--bs-body-bg);
+}
+
+.sidebar .list-group-item {
+    border: none;
+}
+
+.list-group a:hover {
+    border-left: 3px solid #000;
+    cursor: pointer;
+}
+
+div.navbar {
+    border-bottom: 1px solid #c7c8c9
+}
+
+.view-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.indicator {
+    box-shadow: 15px 15px 15px -3px rgba(0,0,0,0.1);
+}
+
+.btn-grad {
+    background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-close-sidebar {
+    position: fixed;
+    left: 50%;
+    display: none;
+}
+
+@media (max-width: 560px) {
+    .sidebar {
+        display: none;
+    }
+    .sidebar.open {
+        position: fixed;
+        width: 60%;
+        z-index: 10;
+    }
+    .navbar {
+        position: fixed;
+        background-color: var(--bs-body-bg);
+        width: 100%;
+        top: 0;
+    }
+    .view-content {
+        margin: 45px 0;
+    }
+    .btn-close-sidebar {
+        display: inline;
+    }
+    .btn-grad {
+        position: fixed;
+        bottom: 5px;
+        width: 90%;
+        margin: auto;
+        left: 5%;
+    }
+}
+
+.intro {
+  height: 100%;
+}
+
+.return-table td, return-table th{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card-table{
+  border-radius: .5rem;
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, .2);
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}

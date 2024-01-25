@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string("gender");
             $table->string("phone_number");
             $table->string("address");
-            $table->enum("role",['admin','pustakawan','anggota'])
+            $table->enum("role",['admin','petugas','anggota'])
             ->default('anggota');
             $table->timestamps();
         });

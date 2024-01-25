@@ -15,6 +15,7 @@ class book extends Model
     function Category(){
         return $this->belongsTo(Category::class);
     }
+   
 
 
 }

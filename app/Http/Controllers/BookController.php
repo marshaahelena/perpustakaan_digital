@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\book;
 use App\Models\Category;
+use Illuminate\Database\Console\Migrations\StatusCommand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class BookController extends Controller
 {
@@ -14,8 +17,11 @@ class BookController extends Controller
      */
     public function index()
     {
+
         return view("book.data",[
             "data" => book::get()
+
+
         ]);
     }
 
@@ -25,14 +31,19 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+{
+    // Generate a UUID
+    $uuid = (string) Str::uuid();
+    // Ambil lima karakter pertama dari UUID
+    $shortUuid = substr($uuid, 0, 8);
+    // Konversi ke huruf besar dan pastikan hanya angka dan huruf yang ada
+    $generatedCode = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $shortUuid));
 
-        return view("book.form",[
-            "category" => Category::get()
-        ]);
-
-    }
-
+    return view("book.form", [
+        "category" => Category::get(),
+        "generatedCode" => $generatedCode,
+    ]);
+}
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +52,6 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'title'            => 'required',
             'code'             => 'required',
@@ -52,11 +62,9 @@ class BookController extends Controller
             'category_id'      => 'required',
             'stock'            => 'required',
             'pdf_file'         => 'required',
-            'cover_image'      => 'required|image|mimes: jpeg,png,jpg'
+            'cover_image'      => 'image|mimes:jpeg,png,jpg|nullable',
         ]);
 
-
-        // nilai dari newcategory
         $newCategoryValue = $request->input('category_id') === 'NewCategory' ? $request->input('newCategory') : null;
 
         if ($newCategoryValue) {
@@ -65,13 +73,20 @@ class BookController extends Controller
             $validatedData['category_id'] = $category->id;
         }
 
-
-
-        $file  = $request->file('cover_image');
+        // $file = $request->file('cover_image');
+        // $file_name = $file->getClientOriginalName();
+        // $file->move(public_path("uploads/book/"), $file_name);
+        // $validatedData["cover_image"] = $file_name;
+        // Penanganan gambar sampul
+    if ($request->hasFile('cover_image')) {
+        $file = $request->file('cover_image');
         $file_name = $file->getClientOriginalName();
         $file->move(public_path("uploads/book/"), $file_name);
-
         $validatedData["cover_image"] = $file_name;
+    } else {
+        $defaultImage = 'no-image-png.jpg';
+        $validatedData["cover_image"] = $defaultImage;
+    }
 
 
         if ($request->hasFile('pdf_file')) {
@@ -81,11 +96,13 @@ class BookController extends Controller
         } else {
             $validatedData['pdf_file'] = null;
         }
+
+
         // Simpan data buku ke database
-        book::create($validatedData);
+        Book::create($validatedData);
 
         // Redirect atau lakukan tindakan lain setelah penyimpanan
-        return redirect()->route('book.index');
+        return redirect()->route('book.index')->with('status', 'Buku berhasil ditambahkan');
     }
 
 
@@ -97,7 +114,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = book::find($id);
+
+        return view('book-list',['show'=> $book]);
     }
 
     /**
@@ -136,7 +155,14 @@ class BookController extends Controller
             'pdf_file' => 'required',
             'cover_image' => 'required|image|mimes:jpeg,png,jpg'
         ]);
+        // nilai dari newcategory
+        $newCategoryValue = $request->input('category_id') === 'NewCategory' ? $request->input('newCategory') : null;
 
+        if ($newCategoryValue) {
+            $category = Category::firstOrNew(['name' => $newCategoryValue]);
+            $category->save();
+            $validatedData['category_id'] = $category->id;
+        }
 
         $file  = $request->file('cover_image');
         $file_name = $file->getClientOriginalName();
@@ -167,4 +193,16 @@ class BookController extends Controller
         book::find($id)->delete();
         return redirect()->route("book.index");
     }
+
+    public function showCategories()
+    {
+        $categories = Category::all();
+
+        return view("category.data", [
+            "categories" => $categories,
+        ]);
+    }
+
+   
+
 }

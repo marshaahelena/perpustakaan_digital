@@ -52,9 +52,8 @@
 <body>
     <div class="row form-container">
         <div class="col s12 m6 offset-m3">
-            <div id="error-message" class="red-text" style="display: none;">
-                Email atau password salah. Silakan coba lagi.
-            </div>
+
+
             <form class="col s12" method="POST" action="{{ route('auth.authentication') }}">
                 @csrf
                 <div class="row center-align valign-wrapper">
@@ -91,6 +90,10 @@
                                             Sekarang</button>
                                         <p style="margin-top: 10px;">Balum punya akun?<a
                                                 href="{{ route('auth.register') }}">Daftar</a></p>
+
+                                                <div id="status-message" class="{{ session('status') ? (strpos(session('status'), 'successful') !== false ? 'green-text' : 'red-text') : 'hide' }}">
+                                                    {{ session('status') }}
+                                                </div>
                                     </div>
                                 </div>
                             </div>

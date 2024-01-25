@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <title>Data Buku</title>
-</head>
-
+@extends('layout.header')
+@section('navbar')
 <body>
+    @if(session('success'))
+        <div class="row">
+            <div class="col s12">
+                <div class="card-panel green lighten-2">
+                    <span class="white-text">{{ session('success') }}</span>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="container">
         <h4>Data Buku</h4>
         <a class="waves-effect waves-light btn" href='{{ route('book.create') }}'>Tambah Data</a>
@@ -42,8 +43,7 @@
                         <td>{{ $see->synopsis }}</td>
                         <td>{{ $see->category->name }}</td>
                         <td>{{ $see->pdf_file }}</td>
-                        <td>{{ $see->cover_image }}</td>
-                        <td><img src="{{asset("uploads/book/".$see->cover_iamge) }}" alt="" width="200"></td>
+                        <td><img src="{{asset("uploads/book/".$see->cover_image) }}" alt="" width="50"></td>
                         <td class="right-align">
                             <a class="waves-effect waves-light btn-small blue" href="{{ route('book.edit', $see->id) }}">Edit</a>
                             <form method="POST" action="{{ route('book.destroy', $see->id) }}" style="display: inline;">
@@ -63,3 +63,4 @@
 </body>
 
 </html>
+@endsection

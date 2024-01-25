@@ -1,3 +1,6 @@
+@extends('layout.header')
+@section('navbar')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +8,8 @@
     <link rel="stylesheet" href="{{ url('asset/materialize/css/materialize.min.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('asset/materialize/css/form.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     {{-- <link rel="stylesheet" href="{{ asset('asset/side_bar/style.css') }}"> --}}
 
     <meta charset="UTF-8">
@@ -32,7 +37,7 @@
 
                 <form action="{{ route('book.store') }}" method="POST" class="col s12" enctype="multipart/form-data">
                     @csrf
-                    <div class="card center-align">
+                    <div class="">
                         <div class="card-content">
                             <h3>Tambah Buku</h3>
                             <div class="row">
@@ -44,8 +49,7 @@
                                 </div>
                                 <div class="input-field col s6">
                                     <i class="material-icons prefix">book</i>
-                                    <input placeholder="Kode" id="code" type="text" class="validate"
-                                        name="code">
+                                    <input placeholder="Kode" id="code" type="text" class="validate" name="code" value="{{ $generatedCode }}" readonly>
                                     <label for="code">Kode</label>
                                 </div>
                             </div>
@@ -66,13 +70,13 @@
                             <div class="row">
                                 <div class="input-field col s6">
                                     <i class="material-icons prefix">date_range</i>
-                                    <input placeholder="Tahun Terbit" id="publication_year" type="text"
+                                    <input placeholder="Tahun Terbit" id="publication_year" type="number"
                                         class="validate" name="publication_year">
                                     <label for="publication_year">Tahun Terbit</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <i class="material-icons prefix">attach_file</i>
-                                    <input placeholder="Stok" id="stock" type="text" class="validate"
+                                    <input placeholder="Stok" id="stock" type="number" class="validate"
                                         name="stock">
                                     <label for="stock">Stok</label>
                                 </div>
@@ -129,13 +133,9 @@
                                     </div>
                                 </div>
 
-                                <div class="row center-align ">
-                                    <div class="col s4 offset-s3 ">
-                                        <button style="border-radius: 50px; overflow: hidden; width: 300px;"
-                                            class="btn waves-effect waves-light #7986cb indigo lighten-2"
-                                            type="submit">Kirim</button>
-                                    </div>
-                                </div>
+                                <button class="btn waves-effect waves-light indigo" type="submit" name="action">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
                             </div>
                         </div>
                 </form>
@@ -185,5 +185,5 @@
         });
     </script>
 
-
+@endsection
 </body

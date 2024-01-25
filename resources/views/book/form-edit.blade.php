@@ -1,3 +1,6 @@
+@extends('layout.header')
+@section('navbar')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +8,14 @@
     <link rel="stylesheet" href="{{ url('asset/materialize/css/materialize.min.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('asset/materialize/css/form.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tambah Buku</title>
-    
+    <title>Edit Buku</title>
+
 </head>
 
 <body>
@@ -88,19 +93,13 @@
                             <div class="row">
                                 <div class="input-field col s6">
                                     <i class="material-icons prefix">category</i>
-                                    <select id="category" name="category_id" required>
+                                    <select id="category_id" name="category_id">
                                         <option value="" disabled selected>Pilih Kategori</option>
-
                                         @foreach ($category as $see)
-                                            <option {{ $see->id == $data->category_id ? 'selected' : '' }}
-                                                value="{{ $see->id }}">{{ $see->name }}</option>
+                                            <option value="{{ $see->id }}">{{ $see->name }}</option>
                                         @endforeach
-
-                                        <option value="NewCategory"
-                                            {{ $data->category == 'NewCategory' ? 'selected' : '' }}>Kategori Baru
-                                        </option>
+                                        <option value="NewCategory">Kategori Baru</option>
                                     </select>
-
                                     <label>Kategori</label>
                                 </div>
                                 <div class="input-field col s6">
@@ -141,7 +140,7 @@
                                             <div class="col s4 offset-s3 ">
                                                 <button style="border-radius: 50px; overflow: hidden; width: 300px"
                                                     class="btn waves-effect waves-light #7986cb indigo lighten-2"
-                                                    type="submit">Kirim</button>
+                                                    type="submit">Edit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +160,7 @@
             // Initialize Materialize components
             M.AutoInit();
 
-            var categorySelect = document.getElementById('category');
+            var categorySelect = document.getElementById('category_id'); // Perubahan di sini
             var newCategoryInput = document.getElementById('newCategory');
 
             categorySelect.addEventListener('change', function() {
@@ -196,6 +195,5 @@
             });
         });
     </script>
-
-
-</body
+    </body
+@endsection
